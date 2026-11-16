@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: aprende-informatica
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.4
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: FLASK_HTTPS_ONLY
+        value: "1"
